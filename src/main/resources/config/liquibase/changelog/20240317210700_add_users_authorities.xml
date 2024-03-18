@@ -9,12 +9,15 @@
     <changeSet id="202403172104002" author="aleksandrtrubino">
         <createTable tableName="users_authorities">
             <column name="authority_id" type="bigint">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="user_id" type="bigint">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="202403172104002" author="aleksandrtrubino">
         <addForeignKeyConstraint
                 baseTableName="authorities"
                 baseColumnNames="authority_id"
@@ -23,6 +26,9 @@
                 referencedColumnNames="authority_id"
                 onDelete="CASCADE"
                 onUpdate="RESTRICT"/>
+    </changeSet>
+
+    <changeSet id="202403172104003" author="aleksandrtrubino">
         <addForeignKeyConstraint
                 baseTableName="users"
                 baseColumnNames="user_id"
@@ -31,7 +37,6 @@
                 referencedColumnNames="user_id"
                 onDelete="CASCADE"
                 onUpdate="RESTRICT"/>
-
     </changeSet>
 
 </databaseChangeLog>
