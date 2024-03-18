@@ -45,6 +45,15 @@ public class Main {
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("br.com.fredericci.pu");
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
+        User user = new User();
+        user.setEmail("string@mail.com");
+        user.setPassword("1234");
+        user.setEnabled(true);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+
     }
 
 //    private static void startDatabase() throws SQLException {

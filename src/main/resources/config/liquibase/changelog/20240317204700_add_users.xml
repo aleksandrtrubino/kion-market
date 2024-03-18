@@ -15,9 +15,6 @@
             <column name="user_id" type="bigint">
                 <constraints primaryKey="true" nullable="false" unique="true"/>
             </column>
-            <column name="username" type="varchar(128)">
-                <constraints nullable="false" />
-            </column>
             <column name="password" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
