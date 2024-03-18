@@ -1,5 +1,4 @@
 package ru.vistar;
-
 import javax.persistence.*;
 
 @Entity(name = "users")
@@ -11,6 +10,7 @@ public class User {
     private String password;
     private String email;
     private Boolean enabled;
+
 
     public User(){}
 
