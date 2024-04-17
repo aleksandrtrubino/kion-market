@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="202403162002001" author="Karavaev2024">
+        <createSequence sequenceName="streets_seq" startValue="1050" incrementBy="50"/>
+    </changeSet>
+
+
+    <changeSet id="202403162002002" author="Karavaev2024">
+        <createTable tableName="streets">
+            <column name="street_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="street_name" type="varchar(128)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="city_id" type="bigint">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202403162002003" author="Karavaev2024">
+        <addForeignKeyConstraint
+                baseTableName="streets"
+                baseColumnNames="city_id"
+                constraintName="fk_streets_city_id"
+                referencedTableName="cities"
+                referencedColumnNames="city_id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT"/>
+    </changeSet>
+
+</databaseChangeLog>

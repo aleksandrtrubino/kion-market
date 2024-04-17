@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="202403162011001" author="Karavaev2024">
+        <createSequence sequenceName="addresses_seq" startValue="1050" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="202403162011002" author="Karavaev2024">
+        <createTable tableName="addresses">
+            <column name="address_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="house_id" type="bigint">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="address_type_id" type="bigint">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202403162011003" author="Karavaev2024">
+        <addForeignKeyConstraint
+                baseTableName="addresses"
+                baseColumnNames="house_id"
+                constraintName="fk_addresses_house_id"
+                referencedTableName="houses"
+                referencedColumnNames="house_id"
+                onDelete="CASCADE"
+                onUpdate="RESTRICT"/>
+    </changeSet>
+
+    <changeSet id="202403162011004" author="Karavaev2024">
+        <addForeignKeyConstraint
+                baseTableName="addresses"
+                baseColumnNames="address_type_id"
+                constraintName="fk_addresses_address_type_id"
+                referencedTableName="address_types"
+                referencedColumnNames="address_type_id"
+                onDelete="SET NULL"
+                onUpdate="RESTRICT"/>
+    </changeSet>
+</databaseChangeLog>
